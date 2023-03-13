@@ -23,7 +23,7 @@ function deck(){
                  '15-TheDevil.png', '16-TheTower.png', '17-TheStar.png',
                  '18-TheMoon.png', '19-TheSun.png', '20-Judgement.png',
                  '21-TheWorld.png'];
-    var cards = [];
+    let cards = [];
 
     for (var i = 0; i < this.indexes.length; i++){
             cards.push(new card(i, this.names[i], '/assets/images/Cards/' + this.path[i]));
@@ -31,16 +31,15 @@ function deck(){
     return cards;
 }
 
-var deckContainer = new deck();
+let deckContainer = new deck();
 
 window.onload = function() {
-    for (var i = 0; i < deckContainer.length; i++) {
-        let div = document.createElement('div');
-        div.className = 'card';
-        //div.style.backgroundImage = deckContainer[i].path;
-        div.innerHTML = '<span class="path"><img src="' + deckContainer[i].path + '" alt="" width="300" height="567"></span>';
-        document.body.appendChild(div);
-    }
+    // for (var i = 0; i < deckContainer.length; i++) {
+    //     let div = document.createElement('div');
+    //     div.className = 'card';
+    //     div.innerHTML = '<span class="path"><img src="' + deckContainer[i].path + '" alt="" width="300" height="567"></span>';
+    //     document.body.appendChild(div);
+    // }
 }
 
 
