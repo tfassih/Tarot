@@ -38,7 +38,14 @@ function shuffle(o) {
 };
 
 function deckClickEvent(){
-    document.getElementById("playArea").style.backgroundImage = deckContainer[0].path;
+    document.getElementById("playArea").innerHTML = '<img src="' + deckContainer[deckContainer.length-1].path + '" alt="" width="300" height="567">';
+    deckContainer.pop();
+    if(deckContainer.length > 1) {
+        deckContainer = shuffle(deckContainer);
+    } else {
+        document.getElementById("deck").className = 'playArea';
+        document.getElementById("deck").innerHTML = '';
+    }
 }
 
 
@@ -59,7 +66,6 @@ window.onload = function() {
     let div2 = document.createElement('div');
     div2.className = 'playArea';
     div2.id = "playArea";
-    div2.innerHTML = '';
     container.appendChild(div2);
 
 
