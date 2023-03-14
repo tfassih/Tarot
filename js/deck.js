@@ -40,11 +40,12 @@ function shuffle(o) {
 function deckClickEvent(){
     document.getElementById("playArea").innerHTML = '<img src="' + deckContainer[deckContainer.length-1].path + '" alt="" width="300" height="567">';
     deckContainer.pop();
-    if(deckContainer.length > 1) {
-        deckContainer = shuffle(deckContainer);
-    } else {
+    if(deckContainer.length == 0) {
         document.getElementById("deck").className = 'playArea';
         document.getElementById("deck").innerHTML = '';
+        document.getElementById("deck").onclick = function() {};
+    } else {
+        deckContainer = shuffle(deckContainer);
     }
 }
 
