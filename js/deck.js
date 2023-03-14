@@ -32,14 +32,38 @@ function deck(){
 }
 
 let deckContainer = new deck();
+function shuffle(o) {
+    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+};
+
+function deckClickEvent(){
+    document.getElementById("playArea").style.backgroundImage = deckContainer[0].path;
+}
+
+
 
 window.onload = function() {
-    // for (var i = 0; i < deckContainer.length; i++) {
-    //     let div = document.createElement('div');
-    //     div.className = 'card';
-    //     div.innerHTML = '<span class="path"><img src="' + deckContainer[i].path + '" alt="" width="300" height="567"></span>';
-    //     document.body.appendChild(div);
-    // }
+    deckContainer = shuffle(deckContainer);
+    let container = document.createElement('div');
+    container.className = 'container';
+    document.body.appendChild(container);
+
+    let div = document.createElement('div');
+    div.className = 'card';
+    div.id = 'deck';
+    div.innerHTML = '<img src="/assets/images/Cards/CardBacks.png" alt="" width="300" height="567" onclick="deckClickEvent()">';
+    div.onclick = function(){deckClickEvent()};
+    container.appendChild(div);
+
+    let div2 = document.createElement('div');
+    div2.className = 'playArea';
+    div2.id = "playArea";
+    div2.innerHTML = '';
+    container.appendChild(div2);
+
+
+
 }
 
 
