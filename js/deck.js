@@ -31,28 +31,27 @@ function deck(){
     return cards;
 }
 
-let deckContainer = new deck();
-function shuffle(o) {
+
+function shuffleArr(o) {
     for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
 };
 
-function deckClickEvent(){
-    document.getElementById("playArea").innerHTML = '<img src="' + deckContainer[deckContainer.length-1].path + '" alt="" width="300" height="567">';
-    deckContainer.pop();
-    if(deckContainer.length == 0) {
-        document.getElementById("deck").className = 'playArea';
-        document.getElementById("deck").innerHTML = '';
-        document.getElementById("deck").onclick = function() {};
-    } else {
-        deckContainer = shuffle(deckContainer);
-    }
+function deckClickEvent(deckContainer){
+        if (deckContainer.length === 0) {
+            document.getElementById("deck").className = 'playArea';
+            document.getElementById("deck").innerHTML = '';
+            document.getElementById("deck").onclick = function () {};
+        } else {
+            document.getElementById("playArea").innerHTML = '<img src="' + deckContainer[0].path + '" alt="" width="300" height="567">';
+            deckContainer.shift();
+        }
 }
 
-
-
 window.onload = function() {
-    deckContainer = shuffle(deckContainer);
+    let deckContainer = new deck();
+    deckContainer = shuffleArr(deckContainer);
+    console.log(deckContainer.toString())
     let container = document.createElement('div');
     container.className = 'container';
     document.body.appendChild(container);
@@ -61,15 +60,13 @@ window.onload = function() {
     div.className = 'card';
     div.id = 'deck';
     div.innerHTML = '<img src="/assets/images/Cards/CardBacks.png" alt="" width="300" height="567" onclick="deckClickEvent()">';
-    div.onclick = function(){deckClickEvent()};
+    div.onclick = function(){deckClickEvent(deckContainer)};
     container.appendChild(div);
 
     let div2 = document.createElement('div');
     div2.className = 'playArea';
     div2.id = "playArea";
     container.appendChild(div2);
-
-
 
 }
 
