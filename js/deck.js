@@ -43,8 +43,23 @@ function deckClickEvent(deckContainer){
             document.getElementById("deck").innerHTML = '';
             document.getElementById("deck").onclick = function () {};
         } else {
-            document.getElementById("playArea").innerHTML = '<img src="' + deckContainer[0].path + '" alt="" width="300" height="567">';
-            deckContainer.shift();
+            if (document.getElementById("playArea").innerHTML.length === 0) {
+                document.getElementById("playArea").innerHTML = '<img src="' + deckContainer[0].path + '" alt="" width="300" height="567">';
+                deckContainer.shift();
+            } else if (document.getElementById("playArea2").innerHTML.length === 0) {
+                document.getElementById("playArea2").innerHTML = '<img src="' + deckContainer[0].path + '" alt="" width="300" height="567">';
+                deckContainer.shift();
+            } else if (document.getElementById("playArea3").innerHTML.length === 0) {
+                document.getElementById("playArea3").innerHTML = '<img src="' + deckContainer[0].path + '" alt="" width="300" height="567">';
+                deckContainer.shift();
+            } else {
+                document.getElementById("playArea").innerHTML = '';
+                document.getElementById("playArea2").innerHTML = '';
+                document.getElementById("playArea3").innerHTML = '';
+            }
+
+
+
         }
 }
 
@@ -67,6 +82,16 @@ window.onload = function() {
     div2.className = 'playArea';
     div2.id = "playArea";
     container.appendChild(div2);
+
+    let div3 = document.createElement('div');
+    div3.className = 'playArea';
+    div3.id = "playArea2";
+    container.appendChild(div3);
+
+    let div4 = document.createElement('div');
+    div4.className = 'playArea';
+    div4.id = "playArea3";
+    container.appendChild(div4);
 
 }
 
