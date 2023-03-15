@@ -57,16 +57,13 @@ function deckClickEvent(deckContainer){
                 document.getElementById("playArea2").innerHTML = '';
                 document.getElementById("playArea3").innerHTML = '';
             }
-
-
-
         }
 }
 
 window.onload = function() {
     let deckContainer = new deck();
     deckContainer = shuffleArr(deckContainer);
-    console.log(deckContainer.toString())
+    //console.log(deckContainer.toString())
     let container = document.createElement('div');
     container.className = 'container';
     document.body.appendChild(container);
