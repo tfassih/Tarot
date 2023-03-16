@@ -3,7 +3,6 @@
     height:567px;
     margin-right:5px;
     margin-bottom:5px;
-    font-family:courier;
     cursor:pointer;
     display:inline-block;
 }
@@ -20,9 +19,31 @@ span.path{
     border-radius:8px;
     cursor:pointer;
     display:inline-block;
+    position:relative;
+
 }
 
 .container{
     overflow: hidden;
     white-space: nowrap;
+    display:inline-block;
+}
+
+.emptyPlayArea{
+    width:300px;
+    height:567px;
+    border:1px solid #151718;
+    margin-right:5px;
+    border-radius:8px;
+    cursor:pointer;
+    display:inline-block;
+    position: relative;
+}
+
+.emptyPlayAreaText{
+    text-align:left;
+    position:relative;
+    font-family:courier;
+    font-size:5em;
+    display:inline;
 }

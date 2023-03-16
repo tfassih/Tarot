@@ -1,8 +1,16 @@
 function deckClickEvent(deckContainer){
     if (deckContainer.length === 0) {
-        document.getElementById("deck").className = 'playArea';
+        document.getElementById("deck").removeEventListener(this, deckClickEvent);
+        document.getElementById("deck").className = 'emptyPlayArea';
         document.getElementById("deck").innerHTML = '';
-        document.getElementById("deck").onclick = () => {};
+
+        let text = document.createElement('p');
+        text.id = 'text';
+        text.className = 'emptyPlayAreaText';
+        text.innerHTML = "<p>DECK IS EMPTY</p>";
+        document.getElementById("container").appendChild(text);
+        document.getElementById("deck").inert = true;
+
     } else {
         if (document.getElementById("playArea").innerHTML.length === 0) {
             document.getElementById("playArea").innerHTML = '<img src="' + deckContainer[0].path + '" alt="" width="300" height="567">';
@@ -46,24 +54,23 @@ function deck(){
                  '21-TheWorld.png'];
     let cards = [];
 
-    for (var i = 0; i < this.indexes.length; i++){
+    for (let i = 0; i < this.indexes.length; i++){
             cards.push(new card(i, this.names[i], '/assets/images/Cards/' + this.path[i]));
     }
     return cards;
 }
 
 function shuffleArr(o) {
-    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    for(let j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
 };
 
-let deckContainer = new deck();
-
 function init(){
+    let deckContainer = new deck();
     deckContainer = shuffleArr(deckContainer);
-    console.log(deckContainer.toString())
     let container = document.createElement('div');
     container.className = 'container';
+    container.id = "container";
     document.body.appendChild(container);
 
     let div = document.createElement('div');
