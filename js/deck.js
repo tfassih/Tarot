@@ -1,4 +1,25 @@
-
+function deckClickEvent(deckContainer){
+    if (deckContainer.length === 0) {
+        document.getElementById("deck").className = 'playArea';
+        document.getElementById("deck").innerHTML = '';
+        document.getElementById("deck").onclick = () => {};
+    } else {
+        if (document.getElementById("playArea").innerHTML.length === 0) {
+            document.getElementById("playArea").innerHTML = '<img src="' + deckContainer[0].path + '" alt="" width="300" height="567">';
+            deckContainer.shift();
+        } else if (document.getElementById("playArea2").innerHTML.length === 0) {
+            document.getElementById("playArea2").innerHTML = '<img src="' + deckContainer[0].path + '" alt="" width="300" height="567">';
+            deckContainer.shift();
+        } else if (document.getElementById("playArea3").innerHTML.length === 0) {
+            document.getElementById("playArea3").innerHTML = '<img src="' + deckContainer[0].path + '" alt="" width="300" height="567">';
+            deckContainer.shift();
+        } else {
+            document.getElementById("playArea").innerHTML = '';
+            document.getElementById("playArea2").innerHTML = '';
+            document.getElementById("playArea3").innerHTML = '';
+        }
+    }
+}
 function card(index, name, path){
     this.num = index;
     this.name = name;
@@ -31,39 +52,16 @@ function deck(){
     return cards;
 }
 
-
 function shuffleArr(o) {
     for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
 };
 
-function deckClickEvent(deckContainer){
-        if (deckContainer.length === 0) {
-            document.getElementById("deck").className = 'playArea';
-            document.getElementById("deck").innerHTML = '';
-            document.getElementById("deck").onclick = function () {};
-        } else {
-            if (document.getElementById("playArea").innerHTML.length === 0) {
-                document.getElementById("playArea").innerHTML = '<img src="' + deckContainer[0].path + '" alt="" width="300" height="567">';
-                deckContainer.shift();
-            } else if (document.getElementById("playArea2").innerHTML.length === 0) {
-                document.getElementById("playArea2").innerHTML = '<img src="' + deckContainer[0].path + '" alt="" width="300" height="567">';
-                deckContainer.shift();
-            } else if (document.getElementById("playArea3").innerHTML.length === 0) {
-                document.getElementById("playArea3").innerHTML = '<img src="' + deckContainer[0].path + '" alt="" width="300" height="567">';
-                deckContainer.shift();
-            } else {
-                document.getElementById("playArea").innerHTML = '';
-                document.getElementById("playArea2").innerHTML = '';
-                document.getElementById("playArea3").innerHTML = '';
-            }
-        }
-}
+let deckContainer = new deck();
 
-window.onload = function() {
-    let deckContainer = new deck();
+function init(){
     deckContainer = shuffleArr(deckContainer);
-    //console.log(deckContainer.toString())
+    console.log(deckContainer.toString())
     let container = document.createElement('div');
     container.className = 'container';
     document.body.appendChild(container);
@@ -71,18 +69,18 @@ window.onload = function() {
     let div = document.createElement('div');
     div.className = 'card';
     div.id = 'deck';
-    div.innerHTML = '<img src="/assets/images/Cards/CardBacks.png" alt="" width="300" height="567" onclick="deckClickEvent()">';
-    div.onclick = function(){deckClickEvent(deckContainer)};
+    div.innerHTML = '<img src="/assets/images/Cards/CardBacks.png" alt="" width="300" height="567" >';
+    div.addEventListener("click", () => {deckClickEvent(deckContainer)});
     container.appendChild(div);
 
     let div2 = document.createElement('div');
     div2.className = 'playArea';
-    div2.id = "playArea";
+    div2.id = 'playArea';
     container.appendChild(div2);
 
     let div3 = document.createElement('div');
     div3.className = 'playArea';
-    div3.id = "playArea2";
+    div3.id = 'playArea2';
     container.appendChild(div3);
 
     let div4 = document.createElement('div');
@@ -92,4 +90,4 @@ window.onload = function() {
 
 }
 
-
+window.onload = init;
